@@ -1,0 +1,395 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>4 Design · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.0.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="implementation.html" />
+    
+    
+    <link rel="prev" href="requirements.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">I. Über diese Arbeit</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Abstrakt
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="preface.html">
+            
+                <a href="preface.html">
+            
+                    
+                    Ehrenwörtliche Erklärung
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">II. Inhalt</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="intro.html">
+            
+                <a href="intro.html">
+            
+                    
+                    1 Einleitung
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="theory.html">
+            
+                <a href="theory.html">
+            
+                    
+                    2 Theorie
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="requirements.html">
+            
+                <a href="requirements.html">
+            
+                    
+                    3 Anforderungen
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.4" data-path="architecture.html">
+            
+                <a href="architecture.html">
+            
+                    
+                    4 Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="implementation.html">
+            
+                <a href="implementation.html">
+            
+                    
+                    5 Implementierung
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="documentation.html">
+            
+                <a href="documentation.html">
+            
+                    
+                    6 Dokumentation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="discussion.html">
+            
+                <a href="discussion.html">
+            
+                    
+                    7 Diskussion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">III. Literatur</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="bibliography.html">
+            
+                <a href="bibliography.html">
+            
+                    
+                    Literaturverzeichnis
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >4 Design</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="3-design">3 Design</h1>
+<p>In diesem Abschnitt werden grundlegende Architekturentscheidungen dargestellt und begr&#xFC;ndet.
+Das Projekt ist in 3 Pakete aufgeteilt. Jedes Paket wird &#xFC;ber NPM einzeln zur Verf&#xFC;gung gestellt und in einem getrennten Repository verwaltet. Die Pakete h&#xE4;ngen teilweise von einander ab. Im Folgenden sind die Aufgaben und Funktionen der Bestandteile n&#xE4;her erl&#xE4;utert.</p>
+<h2 id="31-setlx-transpiler">3.1 Setlx Transpiler</h2>
+<p>Der Transpiler bildet das Kernst&#xFC;ck des Projekts. Er enth&#xE4;lt einen Parser f&#xFC;r SetlX und alle Funktionen, die ben&#xF6;tigt werden um SetlX in JavaScript zu &#xFC;bersetzen. Allerdings bietet dieses Paket nach au&#xDF;en hin nur Programmierschnittstellen an, die von anderen Programmen verwendet werden k&#xF6;nnen. Diese Schnittstelle ist im Kapitel Design n&#xE4;her dokumentiert. Als Benutzerschnittstellen sind viele unterschiedliche M&#xF6;glichkeiten denkbar. Zum Beispiel kann der Transpiler von einem Command Line Interface verwendet werden, in einem Browser on-the-fly aufgerufen werden oder von einem Gulp- oder Webpack-Plugin verwendet werden.</p>
+<p>Der Transpiler kann in zwei Bestandteile aufgetrennt werden. Zuerst wird der SetlX Sourcecode von einem Parser in einen Abstrakten Syntaxbaum (AST) umgewandelt. Danach kann der Syntaxbaum vom eigentlichen Transpiler in JavaScript Sourcecode umgewandelt. In diesem generellen Designmerkmal unterscheidet sich der Transpiler nicht von einem Compiler, der Sourcecode zuerst parst in einen Syntax- oder Parsebaum und diesen dann in einem weiteren Schritt entweder in Maschienen- bzw. Bytecode oder eine Programmiersprache niedrigeren Abstraktionslevels.</p>
+<h3 id="311-der-parser">3.1.1 Der Parser</h3>
+<h4 id="3111-auswahl-des-parsergenerators">3.1.1.1 Auswahl des Parsergenerators</h4>
+<p>F&#xFC;r die Auswahl eines Parsergenerators wurden drei Optionen betrachtet.</p>
+<p><strong>Antlr 4 mit JavaScript Target</strong></p>
+<p>SetlX wird von einem Javaprogramm interpretiert. Der dazugeh&#xF6;rige Parser wird mit Hilfe einer <a href="https://github.com/herrmanntom/setlX/blob/master/interpreter/core/src/main/antlr/SetlXgrammar.g" _target="blank">Antlr 3 Grammatik</a> erzeugt. <a href="http://www.antlr.org" _target="blank">Antlr 4</a> zusammen mit dem <a href="">Javascript Target</a> zu verwenden ist also naheliegend, da so die SetlX Grammatik f&#xFC;r den Java Interpreter vermeindlich &#xFC;bernommen werden kann.</p>
+<p>In einem Versuch die Antlr 3 Grammatik in eine Antlr 4 Grammatik umzuwandeln stellte sich schnell auf Grund der Unterschiede zwischen den Versionen als aufw&#xE4;ndig heraus. Desweiteren erreichte der generierte Parser sehr schnell das Speicherlimit der Node.js Virtual Machine. Eine Umsetzung mit Antlr 4 wurde aus diesen Gr&#xFC;nden nicht weiter verfolgt.</p>
+<p><strong>JISON</strong></p>
+<p>JISON ist einer der bekanntesten Parsergeneratoren und wird auch von anderen Transpilern verwendet. JISON unterst&#xFC;tzt im Gegensatz zu Antlr und PEG.js nur kontextfreie Grammatiken. Da die SetlX Grammatik jedoch als kontextsensitive Grammatik formuliert ist, m&#xFC;sste die Grammatik mit gro&#xDF;em Aufwand umformuliert werden.</p>
+<p><strong>PEG.js</strong></p>
+<p>PEG.js ist ein Parsergenerator f&#xFC;r kontextsensitive Grammatiken in JavaScript. Der Name impliziert bereits, dass PEG &#xE4;hnlich wie Antlr f&#xFC;r <em>Parsing Expression Grammar</em> entwickelt wurde. Das hat den Vorteil, dass auch hier die SetlX Grammatik bis auf einige Syntax&#xE4;nderungen in ihrer Struktur erhalten bleiben kann. Lediglich die Aktionen m&#xFC;ssen an Javascript angepasst werden.</p>
+<p>PEG.js ist in JavaScript geschrieben und integriert sich im Gegensatz zu Antlr problemlos in den Softwarestack. Mit Hilfe eines <a href="https://github.com/lazutkin/gulp-peg" _target="blank">Plugins</a> f&#xFC;r <a href="http://gulpjs.com/" _target="blank">Gulp</a> kann der Buildprozess automatisiert werden.</p>
+<p>PEG.js stellt sich als m&#xE4;chtige L&#xF6;sung heraus, die sich in die verwendete Technologien ohne Probleme einf&#xFC;gen l&#xE4;sst. SetlX.js setzt deshalb auf PEG.js als Parsergenerator.</p>
+<h4 id="3112-syntaxbaumklassen">3.1.1.2 Syntaxbaumklassen</h4>
+<p>Das Ergebnis des Parsers muss f&#xFC;r die n&#xE4;chsten Schritte in einer Datenstruktur festgehalten werden. Daf&#xFC;r werden in der Regel Syntaxb&#xE4;ume verwendet. Um die Erstellung des Syntaxbaums einfacher zu gestalten werden Klassen angelegt, mit denen die Knoten im Baum einfach generiert werden k&#xF6;nnen. F&#xFC;r fast jeder Regel wird daf&#xFC;r eine Klasse erstellt. Eine Au&#xDF;nahme bilden die Listenregeln, etwa <em>ExpressionList</em>. Sie geben statt einer eigenen <em>ExpressionList</em>-Klasse einfach eine Liste bzw. einen JavaScript Array von <em>Expressions</em> zur&#xFC;ck. So k&#xF6;nnen neue Features durch die Erstellung von Parseregeln in der Grammatik und entsprechenden Klassen hinzugef&#xFC;gt werden, ohne mit bestehenden Bestandteilen in Konflikt zu geraten.</p>
+<h3 id="312-der-transpiler">3.1.2 Der Transpiler</h3>
+<p>F&#xFC;r den Transpiler wird ebenso ein modularer Aufbau verwendet. F&#xFC;r jeden Knotentyp im AST wird eine Transpilerfunktion erstellt. Eine solche Funktion k&#xFC;mmert sich im Idealfall auch nur um den Knoten selbst, nicht um darunter oder dar&#xFC;ber liegende Knoten. Wenn eine neue Art von Token durch den Transpiler&#xFC;bersetzt werden soll, kann einfach eine Transpilerfunktion hinzugef&#xFC;gt werden.</p>
+<p>Eine Transpilerfunktion erh&#xE4;lt also einen Teilbaum des AST als &#xDC;bergabeparameter und gibt einen String zur&#xFC;ck. Dieser String enth&#xE4;lt den &#xFC;bersetzten JavaScript Code. Statt direkt das Ergebnis zur&#xFC;ckzuliefern h&#xE4;tte auch ein JavaScript Syntaxbaum generiert werden k&#xF6;nnen, der dann in einem weiterem Schritt aus diesem JavaScript generiert. Eine solche Architektur wird zum Beispiel von Babel verwendet und ist besonders dann vorteilhaft, wenn nur Teile des Baums modifieziert werden m&#xFC;ssen, aber der gr&#xF6;&#xDF;ere Teil wiederverwendet werden kann. Dadurch k&#xF6;nnen auch mehrere Transpiler einfach hintereinander geschaltet werden. F&#xFC;r SetlX.js ist es jedoch v&#xF6;llig ausreichend gleich das Ergebnis zu erstellen.</p>
+<h2 id="32-setlx-cli">3.2 SetlX CLI</h2>
+<p>Das SetlX Command Line Interface ist eine Benutzerschnittstelle f&#xFC;r das umwandeln von SetlX Code in JavaScript mit Hilfe der Console. Das Paket ist speziell f&#xFC;r Node.js entwickelt und ben&#xF6;tigt im Gegensatz zu den anderen Paketen auch Node.js zur Ausf&#xFC;hrung. Es verwendet den SetlX Transpiler und stellt die Funktionen und Optionen als Befehle zur Verf&#xFC;gung. Haupts&#xE4;chlich werden damit ganze SetlX Dateien oder Ordner zu JavaScript umgewandelt. Zu Beginn werden drei Kommandos zur Verf&#xFC;gung gestellt: Ein Kommando zur Ansicht des AST, haupts&#xE4;chlich f&#xFC;r Debug- und Pr&#xE4;sentationszwecken. Ein Befehl zum transpilen von SetlX Sourcecode. Die daduch entstandenen JavaScriptdateien k&#xF6;nnen dann von Node.js ausgef&#xFC;rt werden. Au&#xDF;erdem kann mit einem weiterem Befehl auch das Programm direkt ausgef&#xFC;hrt werden.</p>
+<h2 id="33-setlx-runtime-library">3.3 SetlX Runtime Library</h2>
+<p>Die SetlX Runtime Library wird von Programmen ben&#xF6;tigt, die von SetlX zu JavaScript umgewandelt wurden. Die Runtime Library implementiert zum einen Funktionen aus der SetlX Standard Library und zum anderen auch Helperfunktionen, die f&#xFC;r die effektive Kompilierung von SetlX Sourcecode ben&#xF6;tigt werden. &#xDC;ber die Herausforderungen und Designentscheidungen der wird in den n&#xE4;chsten Kapiteln n&#xE4;her eingegangen.</p>
+<h3 id="331-herausforderungen">3.3.1 Herausforderungen</h3>
+<p>W&#xE4;hrend sich SetlX und JavaScript in einigen Konzepten und Funktionen sehr &#xE4;hnlich sind, unterscheiden sie sich an anderen Stellen durchaus von einander. Beide Sprachen sind dynamisch typisierte Scriptsprachen und verwenden dabei &#xE4;hnliche Typen. In zwei Punkten  stark von JavaScript, was den Einsatz von Helperfunktionen und -Objekten notwendig macht.
+SetlX unterst&#xFC;tzt als eines seiner Kernmerkmale Mengen als First Class Objects. In JavaScript ist zwar eine Klasse f&#xFC;r die Erstellung von Sets vorhanden, allerdings werden durch diese Klasse kaum Operationen unterst&#xFC;tzt. Die SetlX Runtime Library stellt deswegen eine eigene Implementierung in Form einer Helperklasse zur Verf&#xFC;gung.
+Desweiteren sind Operatoren in SetlX noch viel st&#xE4;rker &#xFC;berladen, als in JavaScript. Beispielsweise kann in beiden Sprachen der &quot;+&quot;-Operator f&#xFC;r die Addition zweier Zahlen verwendet werden, oder f&#xFC;r die Verkettung von zwei Strings. In SetlX k&#xF6;nnen aber mit dem &quot;+&quot;-Operator auch Listen verkettet werden und Mengen vereinigt. Aus diesem Grund muss zur Laufzeit der Typ einer Variable erkannt werden und die entsprechende Operation ausgef&#xFC;rt werden. Somit kann ein &quot;+&quot; in SetlX nicht durch ein &quot;+&quot; in JavaScript &#xFC;bersetzt werden und eine Hilfsfunktion wird ben&#xF6;tigt, die den Typ der Parameter erkennt und die gew&#xFC;nscht Aktion ausf&#xFC;hrt.</p>
+<h3 id="331-standard-library">3.3.1 Standard Library</h3>
+<p>SetlX hat eine Standard Library, die grundlegende mathematische Funktionen und Operationen bereitstellt. Diese Funktionen sind normalerweise in Java implementiert. Damit die Funktionen auch in SetlX.js zur Verf&#xFC;gung stehen m&#xFC;ssen sie entsprechend in JavaScript implementiert werden.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="requirements.html" class="navigation navigation-prev " aria-label="Previous page: 3 Anforderungen">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="implementation.html" class="navigation navigation-next " aria-label="Next page: 5 Implementierung">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"4 Design","level":"2.4","depth":1,"next":{"title":"5 Implementierung","level":"2.5","depth":1,"path":"implementation.md","ref":"implementation.md","articles":[]},"previous":{"title":"3 Anforderungen","level":"2.3","depth":1,"path":"requirements.md","ref":"requirements.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.x.x"},"file":{"path":"architecture.md","mtime":"2016-05-30T13:17:45.978Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-06-07T12:38:47.609Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+

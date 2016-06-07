@@ -1,0 +1,535 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>5 Implementierung · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.0.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="documentation.html" />
+    
+    
+    <link rel="prev" href="architecture.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">I. Über diese Arbeit</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Abstrakt
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="preface.html">
+            
+                <a href="preface.html">
+            
+                    
+                    Ehrenwörtliche Erklärung
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">II. Inhalt</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="intro.html">
+            
+                <a href="intro.html">
+            
+                    
+                    1 Einleitung
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="theory.html">
+            
+                <a href="theory.html">
+            
+                    
+                    2 Theorie
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="requirements.html">
+            
+                <a href="requirements.html">
+            
+                    
+                    3 Anforderungen
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="architecture.html">
+            
+                <a href="architecture.html">
+            
+                    
+                    4 Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.5" data-path="implementation.html">
+            
+                <a href="implementation.html">
+            
+                    
+                    5 Implementierung
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="documentation.html">
+            
+                <a href="documentation.html">
+            
+                    
+                    6 Dokumentation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="discussion.html">
+            
+                <a href="discussion.html">
+            
+                    
+                    7 Diskussion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">III. Literatur</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="bibliography.html">
+            
+                <a href="bibliography.html">
+            
+                    
+                    Literaturverzeichnis
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >5 Implementierung</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="implementierung">Implementierung</h1>
+<h2 id="41-setlx-transpiler">4.1 SetlX Transpiler</h2>
+<h3 id="411-werkzeuge">4.1.1 Werkzeuge</h3>
+<p>F&#xFC;r die Erstellung des Transpilers kommen unterschiedliche Tools aus dem Node.js &#xD6;kosystem zum Einsatz.</p>
+<p><a href="http://gulpjs.com/" _target="blank"><strong>Gulp</strong></a> ist ein sogenannter Taskrunner. Gulp wird verwendet um die unterschiedlichen Buildmethoden zu vereinen und Builds automatisch und nach Bedarf zu starten. Gulp verwendet Plugins um Babel und PEG.js anzusteuern. Gulp verwendet sogenannte Streams um Sourcedateien zu transformieren und im Zielverzeichnes abzulegen. Gulp kann au&#xDF;erdem das Dateisystem beobachten und &#xC4;nderungen dann in Echtzeit in neuen Builds zusammenstellen.</p>
+<p><a href="https://babeljs.io" _target="blank"><strong>Babel</strong></a> ist der bekannteste Transpiler f&#xFC;r zuk&#xFC;nftige JavaScriptversionen. Babel verwandelt so zum beispiel ES2015 Code in ES5 Code um. Auf diese Weise kann der Code auch auf Umgebungen  ausgef&#xFC;hrt werden, die die neuen Features der aktuellen EcmaScript Definition noch nicht unterst&#xFC;tzen. Zum Zeitpunkt des Projektes unterst&#xFC;tzen die wenigsten Umgebungen alle neuen Features.</p>
+<p><a href="http://pegjs.org/" _target="blank"><strong>PEG.js</strong></a> ist ein Parsergenerator f&#xFC;r kontextsensitive Grammtiken. Im Kapitel 3.1.1.1 wurde dieses Werkzeug bereits vorgestellt. Wichtig ist an dieser Stelle noch, dass PEG.js auf Node.js l&#xE4;uft und wie Babel mit Hilfe eines Gulp Plugins Builds in Echtzeit erzeugen kann.</p>
+<p><a href="https://mochajs.org/" _target="blank"><strong>Mocha</strong></a> ist ein Unit Test Framework. Mocha macht es m&#xF6;glich definierte Unit Tests auszuf&#xFC;hren und die Ergebnisse dann in der Konsole darzustellen. Mocha selbst hat keine Assertion Bibliothek, deshalb wird zus&#xE4;tzlich <a href="https://shouldjs.github.io/" _target="blank"><strong>Should.js</strong></a> verwendet. Mit Hilfe von <a href="http://sinonjs.org/" _target="blank"><strong>Sinon.js</strong></a> werden au&#xDF;erdem Funktionsaufrufe validiert.</p>
+<h3 id="412-grammatik">4.1.2 Grammatik</h3>
+<p>Die SetlX.js Grammatik bedient sich der Struktur der originalen SetlX Grammatik. Jede Regel, die zu einem unterst&#xFC;tztem Bestandteil von SetlX.js geh&#xF6;rt, wurde von Antlr zu PEG.js &#xFC;bersetzt. In der sogenannten <em>Action</em> der wird der abstrakte Syntaxbaum erstellt.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// Beispiel einer Regel</span>
+Iterator
+  = <span class="hljs-keyword">as</span>:Assignable WS <span class="hljs-string">&apos;in&apos;</span> WS expr:Expression
+    { <span class="hljs-keyword">return</span> Iterator(<span class="hljs-keyword">as</span>, expr); }
+</code></pre>
+<h3 id="413-syntaxbaum">4.1.3 Syntaxbaum</h3>
+<p>F&#xFC;r die Erstellung von Knoten im AST werden f&#xFC;r jede Art von Token eine eigene Klasse angelegt. Die Klasse verf&#xFC;gt &#xFC;ber einen Konstruktor, der die Attribute festlegt. Als Attribut erh&#xE4;lt jeder Knoten das Feld <code>token</code>. Es enth&#xE4;lt einen konstanten String, der verwendet wird um zu entscheiden, welche Transpilerfunktion auf den Knoten angewandt werden muss.</p>
+<p>Die &#xDC;bergabeparameter unterscheiden sich je nach Art der Operation. Im unteren Beispiel</p>
+<p>Au&#xDF;erdem wird die <code>toString</code> Methode implementiert, die in JavaScript dann aufgerufen wird, wenn ein Objekt impliziert zu einem String umgewandelt wird. Die <code>toString</code> Methode erzeugt einen String, der dem Kontrukturaufruf nahe kommt. Auf diese Weise kann diese Ansicht dazu verwendet werden den Syntaxbaum zu inspizieren.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { ITERATOR } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../constants/tokens&apos;</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Iterator</span> </span>{
+  <span class="hljs-keyword">constructor</span>(assignable, expression) {
+    <span class="hljs-comment">// String to identify type of Node</span>
+    <span class="hljs-keyword">this</span>.token = ITERATOR;
+    <span class="hljs-keyword">this</span>.assignable = assignable;
+    <span class="hljs-keyword">this</span>.expression = expression;
+  }
+
+  toString() {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`Iterator( <span class="hljs-subst">${this.assignable}</span>, <span class="hljs-subst">${this.expression}</span> )`</span>;
+  }
+}
+
+<span class="hljs-comment">// Constructor function gets exported to avoid new calls in requiring module</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">creator</span>(<span class="hljs-params">assignable, expression</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Iterator(assignable, expression);
+}
+</code></pre>
+<h3 id="413-createtranspiler">4.1.3 createTranspiler</h3>
+<p>Die Funktion <code>createTranspiler</code> bindet die Plugins an die Transpilerfunktion. Durch die Dependency Injection kann der Transpiler einfach durch eigene Implementierungen der Plugins erweitert werden und besonders einfach getestet werden.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> transpilers <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./transpilers&apos;</span>;
+
+<span class="hljs-comment">// [...]</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createTranspiler</span>(<span class="hljs-params">plugins</span>) </span>{
+  <span class="hljs-comment">// override default plugins with plugins provided</span>
+  <span class="hljs-keyword">const</span> mergedPlugins = <span class="hljs-built_in">Object</span>.assign({}, defaultPlugins(), plugins);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transpile</span>(<span class="hljs-params">tree</span>) </span>{
+    <span class="hljs-comment">// look up matching transpiler function</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> transpilers[tree.token] !== <span class="hljs-string">&apos;function&apos;</span>) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`Could not find transpiler for token type <span class="hljs-subst">${tree.token}</span>`</span>);
+    }
+    <span class="hljs-keyword">return</span> transpilers[tree.token](tree, transpile, mergedPlugins);
+  };
+}
+</code></pre>
+<p>Die Funktion <code>transpile</code> entscheidet an der Art des Knotens welche Transpilerimplementierung verwendet werden muss. <code>src/transpilers/index.js</code> exportiert daf&#xFC;r eine Hashmap, die alle verf&#xFC;gbaren Transpiler bereitstellt. Danach wird die passende Funktion aufgerufen und neben dem Knoten auch Plugins und die <code>transpile</code> Funktion selbst &#xFC;bergeben.</p>
+<h3 id="414-plugins">4.1.4 Plugins</h3>
+<p>Transpilerfunktionen sind als pure Functions designt. W&#xE4;hrend die meisten Funktionen auch keine Seiteneffekte haben, m&#xFC;ssen aber einige Funktionen Einfluss auf den globalen Zustand des Programms haben. In SetlX.js wird der globale Zustand mit Hilfe von Plugins verwaltet.</p>
+<h4 id="4141-import-plugins">4.1.4.1 Import Plugins</h4>
+<p>SetlX.js verwendet zwei Plugins, die unterschiedliche Arten von imports aus der SetlX.js Library bereitstellen. Das <code>StdLibPlugin</code> verwaltet Aufrufe der Standard Library, also Funktionen, die in SetlX global durch den Interpreter zur Verf&#xFC;gung gestellt werden. Das <code>HelperPlugin</code> stellt Funktionen zur Verf&#xFC;gung, die von dem &#xFC;bersetzten Programm ben&#xF6;tigt werden, um alle SetlX-Funktionalit&#xE4;ten abzubilden. Diese Funktionen werden im Kapitel 4.2 n&#xE4;her vorgestellt.</p>
+<h4 id="4142-scope-plugins">4.1.4.2 Scope Plugins</h4>
+<p>Das <code>ScopePlugin</code> verwaltet den Variablenscope. Anders als in SetlX m&#xFC;ssen Variablen in JavaScript zuerst deklariert werden. SetlX.js deklariert daf&#xFC;r Variablen im Funktionsscope mit dem Keyword <code>var</code>. Ist eine Variable schon im h&#xF6;heren Scope deklariert, wird die Variable nicht erneut im aktuellen Scope deklariert. Auf diese Weise entsteht ein Closure. SetlX unterst&#xFC;tzt in der Regel nur Closures, wenn explizit das Keywort <code>closure</code> anstatt <code>procedure</code> bzw. die <em>thin arrow function syntax</em> (<code>|-&gt;</code>) verwendet wird. Allerdings erh&#xE4;lt die Prozedur auch weiterhin Zugriff auf andere Funktionen aus dem oberen Scope. Da ein Idenfier weder den Typ des Wertes kennt, den er inneh&#xE4;lt, noch seinen Verwendungszweck wird hier einfach der gesamte obere Scope zur Verf&#xFC;gung gestellt. Mit einer Implementierung auf Ebene der Assignments k&#xF6;nnte eine 1:1 Umsetzung zwar realisiert werden, jedoch wird hier aufgrund der Komplexit&#xE4;t dieser Implementierung darauf verzichtet.</p>
+<h3 id="415-transpilerfunktionen">4.1.5 Transpilerfunktionen</h3>
+<p>Transpilerfunktionen werden f&#xFC;r einen Tokentype geschrieben. Die Funktion kann im Fall eines Aufrufs sicher sein, dass der oberste Knoten des &#xFC;bergebenen Syntaxbaums vom Typ des spezifizierten Tokens ist. Jede Transpilerfunktion gibt als Ergebniss das &#xFC;bersetzte Programm f&#xFC;r den &#xFC;bergebenen Teilbaum als String zur&#xFC;ck.</p>
+<p>Neben dem Baum erh&#xE4;lt die Transpilerfunktion als zweiten Parameter die <code>transpile</code> Funktion, um rekursiv Unterb&#xE4;ume zu &#xFC;bersetzen. So &#xFC;bersetzt die im ersten Beispiel dargestellte Funktion f&#xFC;r Disjunktionen nur die Disjunktion selbst. Die Parameter werden von <code>transpile</code> gehandhabt.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// Recursive transpile calls in transpiler function</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">disjunction</span>(<span class="hljs-params">tree, transpile</span>) </span>{
+  <span class="hljs-keyword">return</span> transpile(tree.lefthand) + <span class="hljs-string">&apos; || &apos;</span> + transpile(tree.righthand);
+}
+</code></pre>
+<p>Andere Transpilerfunktionen verwenden Plugins im den globalen Zustand des Programms zu beeinflussen. Die <code>identifier</code> Funktion &#xFC;berpr&#xFC;ft zuerst, ob es sich beim Namen des Identifiers um einen reservierten Namen aus der Standardbibliothek handelt. Ist das der Fall wird die Funktion automatisch vom Plugin importiert. In der Regel ist dies aber nicht der Fall und der Name wird im <code>ScopePlugin</code> registriert. Zum Schluss kann der Identifiername als String zur&#xFC;ckgegeben werden.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// Global state manipulation with plugins</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">identifier</span>(<span class="hljs-params">{ name }, transpile, { scopePlugin, stdLibPlugin }</span>) </span>{
+  <span class="hljs-keyword">if</span> (!stdLibPlugin.isStd(name)) {
+    scopePlugin.register(name);
+  }
+  <span class="hljs-keyword">return</span> name;
+}
+</code></pre>
+<p>Andere Transpiler erstellen Ausgaben mit Hilfe der Plugins. Jede Funktion erh&#xE4;lt ihren eigenen Scope. Damit die Variablen deklariert werden muss die Deklaration als erstes im Funktionsbody ausgegeben werden. Der Transpiler f&#xFC;r Prozeduren erstellt deshalb einen neuen Scope im <code>ScopePlugin</code>. Nachdem der Funktionsblock &#xFC;bersetzt wurde kann der Scope wieder geschlossen werden. Alle registrierten Variablen k&#xF6;nnen dann an den Anfang des Funktionsblocks gesetzt werden.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> indent <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../util/indent&apos;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">procedure</span>(<span class="hljs-params">{ params, block }, transpile, { scopePlugin }</span>) </span>{
+  <span class="hljs-comment">// create a new scope and register function parameter names</span>
+  scopePlugin.newScope(params.map(param =&gt; param.name));
+  <span class="hljs-keyword">const</span> body = transpile(block);
+  <span class="hljs-comment">// close the scope and again and receive the varable definitions</span>
+  <span class="hljs-keyword">const</span> varDefs = scopePlugin.closeScope();
+  <span class="hljs-keyword">const</span> fullBody = indent(<span class="hljs-number">2</span>, (varDefs ? varDefs + <span class="hljs-string">&apos;\n&apos;</span> : <span class="hljs-string">&apos;&apos;</span>) + body);
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`function(<span class="hljs-subst">${params.map(transpile).join(&apos;, &apos;)}</span>) {\n<span class="hljs-subst">${fullBody}</span>}`</span>;
+}
+</code></pre>
+<h3 id="416-tests">4.1.6 Tests</h3>
+<p>Der Transpiler wird mit rund 150 Unittests auf Korrektheit &#xFC;berpr&#xFC;ft. Dabei werden Parser und Transpilerfunktionen getrennt getestet.</p>
+<p>Parsertests &#xFC;berpr&#xFC;fen, ob ein String mit SetlX Programmcode den erwarteten Syntaxbaum zur&#xFC;ckliefert. Die Parserfunktion wird mit dem String aufgerufen und das erwartete Ergebnis aus den Syntaxklassen zusammengebaut.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// very simple parser test</span>
+describe(<span class="hljs-string">&apos;syntaxtree/Break&apos;</span>, () =&gt; {
+  it(<span class="hljs-string">&apos;should parse break statements&apos;</span>, () =&gt; {
+    parser(<span class="hljs-string">&apos;break;&apos;</span>).should.eql(
+      InitBlock([
+        Break(),
+      ])
+    );
+  });
+});
+</code></pre>
+<p>Im Gegensatz dazu rufen Transpilertests die Transpilerfunktion mit einem solchen von Hand generiertem Syntaxbaum auf und &#xFC;berpr&#xFC;fen, ob das Ergebnis der erwarteten Ausgabe entspricht. Au&#xDF;erdem kann &#xFC;berpr&#xFC;ft werden, ob der Transpiler wie erwartet mit den eingesetzten Plugins interagiert.</p>
+<pre><code class="lang-js">describe(<span class="hljs-string">&apos;transpilers/identifier&apos;</span>, () =&gt; {
+  it(<span class="hljs-string">&apos;should transpile to the provided name correctly&apos;</span>, () =&gt; {
+    <span class="hljs-keyword">const</span> name = <span class="hljs-string">&apos;myid&apos;</span>;
+    createTranspiler()(Identifier(name)).should.be.exactly(name);
+  });
+
+  it(<span class="hljs-string">&apos;should register the identifier name to the scope plugin&apos;</span>, () =&gt; {
+    <span class="hljs-keyword">const</span> scopePlugin = { register: sinon.spy() };
+    <span class="hljs-keyword">const</span> stdLibPlugin = { isStd: sinon.stub().returns(<span class="hljs-literal">false</span>) };
+    <span class="hljs-keyword">const</span> transpile = createTranspiler({ scopePlugin, stdLibPlugin });
+    transpile(Identifier(<span class="hljs-string">&apos;myid&apos;</span>));
+
+    sinon.assert.calledOnce(scopePlugin.register);
+    sinon.assert.calledWith(scopePlugin.register, <span class="hljs-string">&apos;myid&apos;</span>);
+
+    sinon.assert.calledOnce(stdLibPlugin.isStd);
+    sinon.assert.calledWith(stdLibPlugin.isStd, <span class="hljs-string">&apos;myid&apos;</span>);
+  });
+});
+</code></pre>
+<h2 id="42-setlxjs-library">4.2 SetlX.js Library</h2>
+<p>Die SetlX.js Library ist in ES2015 geschrieben und wird, wie der Transpiler f&#xFC;r die Verwendung im Browser und Node.js zuerst von Babel transpiliert. Von der Bibliothek werden Funktionen bereitgestellt, die ein in JavaScript &#xFC;bersetztes SetlX Programm brauchen k&#xF6;nnte.</p>
+<h3 id="421-struktur">4.2.1 Struktur</h3>
+<p>Toplevel Ordnerstruktur:</p>
+<pre><code>dist/
+src/
+test/
+</code></pre><p><code>src</code> enth&#xE4;lt alle Sourcedateien, also die eigentlichen Funktionen in ES2015 Syntax. <code>dist</code> enth&#xE4;lt Dateien, die von ES2015 zu ES5 &#xFC;bersetzt wurden. <code>test</code> enth&#xE4;lt Unittests f&#xFC;r einige der Funktionen. Jeder dieser Ordner enth&#xE4;lt die gleiche Ordnerstruktur auf der zweiten Ebene:</p>
+<pre><code>class/
+hlp/
+std/
+util/
+</code></pre><p><code>class</code> enth&#xE4;lt Klassendefinitionen. <code>hlp</code> enth&#xE4;lt alle Helperfunktionen. <code>std</code> enth&#xE4;lt Funktionen der SetlX Standard Library. <code>util</code> enth&#xE4;lt Funktionalit&#xE4;ten, die von den anderen Funktionen h&#xE4;ufig verwendet werden.</p>
+<p>Von der Library werden zwei unterschiedliche Arten von Funktionen exportiert. Zum einen werden die sogenannten Helperfunktionen angeboten. Helperfunktionen unterst&#xFC;tzen das Programm mit Funktionalit&#xE4;ten, die nur schwer durch den Transpiler alleine abgebildet werden k&#xF6;nnen. Eine genauere Betrachtung dieses Themas findet sich in Kapitel 3.3.1.</p>
+<h3 id="422-utility-funktionen">4.2.2 Utility Funktionen</h3>
+<p>Utility Funktionen &#xFC;bernehmen Aufgaben, die von anderen Funktionen verwendet werden. Die Funktion <code>typify</code> ist besonders wichtig f&#xFC;r die Umsetzung der SetlX Typen in JavaScript. Mit Hilfe von <code>typify</code> wird der SetlX Typ einer Variable ermittelt. Die meisten Funktionen in der Bibliothek sind &#xFC;berladen und m&#xFC;ssen deshalb zuerst den Typ ihrer &#xDC;bergabeparameter feststellen.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { <span class="hljs-built_in">Set</span>, List } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;immutable&apos;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> STRING = <span class="hljs-string">&apos;string&apos;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> NUMBER = <span class="hljs-string">&apos;number&apos;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> LIST = <span class="hljs-string">&apos;list&apos;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> SET = <span class="hljs-string">&apos;set&apos;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> BOOLEAN = <span class="hljs-string">&apos;boolean&apos;</span>;
+
+<span class="hljs-comment">/**
+ * To represent SetlX types in Javascript the transpiler created different
+ * Javascript types. To make it easier for other functions to recognise
+ * their input parameters types this function answeres with the type.
+ */</span>
+<span class="hljs-keyword">const</span> typeMap = { string: STRING, number: NUMBER, boolean: BOOLEAN };
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">typify</span>(<span class="hljs-params">value</span>) </span>{
+  <span class="hljs-keyword">if</span> (List.isList(value)) {
+    <span class="hljs-keyword">return</span> LIST;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Set</span>.isSet(value)) {
+    <span class="hljs-keyword">return</span> SET;
+  }
+  <span class="hljs-keyword">return</span> typeMap[<span class="hljs-keyword">typeof</span> value];
+}
+</code></pre>
+<h2 id="43-setlxjs-cli">4.3 SetlX.js CLI</h2>
+<p>Das SetlX.js Command Line Interface wurde speziell f&#xFC;r Node.js entwickelt und ist in ES5 geschrieben. Es l&#xE4;uft so nativ auf V8, der Virtuellen Maschiene in Node.js. SetlX.js bildet einen schmalen Wrapper um den Transpiler und stellt Funktionen und Optionen &#xFC;ber Flags bereit. SetlX.js CLI verwendet die JavaScript Library <a href="https://github.com/tj/commander.js" _target="blank">Commander.js</a> um die &#xDC;bergabeparameter zu parsen.</p>
+<p>Zum Transpilieren wird der SetlX.js Transpiler aufgerufen. Dateisystemoperationen werden mit den standardm&#xE4;&#xDF;igen Node.js Paketen <code>path</code> und <code>fs</code> umgesetzt. F&#xFC;r das Ausf&#xFC;hren des Ergebniscodes wird ein einfacher <code>eval</code> Aufruf verwendet.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="architecture.html" class="navigation navigation-prev " aria-label="Previous page: 4 Design">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="documentation.html" class="navigation navigation-next " aria-label="Next page: 6 Dokumentation">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"5 Implementierung","level":"2.5","depth":1,"next":{"title":"6 Dokumentation","level":"2.6","depth":1,"path":"documentation.md","ref":"documentation.md","articles":[]},"previous":{"title":"4 Design","level":"2.4","depth":1,"path":"architecture.md","ref":"architecture.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.x.x"},"file":{"path":"implementation.md","mtime":"2016-05-30T15:18:10.339Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-06-07T12:38:47.609Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+
