@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.0.3">
+        <meta name="generator" content="GitBook 3.1.1">
         
         
         
@@ -290,13 +290,13 @@ Das Projekt ist in 3 Pakete aufgeteilt. Jedes Paket wird &#xFC;ber NPM einzeln z
 <h4 id="4111-auswahl-des-parsergenerators">4.1.1.1 Auswahl des Parsergenerators</h4>
 <p>F&#xFC;r die Auswahl eines Parsergenerators wurden drei Optionen betrachtet.</p>
 <p><strong>Antlr 4 mit JavaScript Target</strong></p>
-<p>SetlX wird von einem Javaprogramm interpretiert. Der dazugeh&#xF6;rige Parser wird mit Hilfe einer <a href="https://github.com/herrmanntom/setlX/blob/master/interpreter/core/src/main/antlr/SetlXgrammar.g" _target="blank">Antlr 3 Grammatik</a> erzeugt. <a href="http://www.antlr.org" _target="blank">Antlr 4</a> zusammen mit dem <a href="">Javascript Target</a> zu verwenden ist also naheliegend, da so die SetlX Grammatik f&#xFC;r den Java Interpreter vermeindlich &#xFC;bernommen werden kann.</p>
+<p>SetlX wird von einem Javaprogramm interpretiert. Der dazugeh&#xF6;rige Parser wird mit Hilfe einer <a href="https://github.com/herrmanntom/setlX/blob/master/interpreter/core/src/main/antlr/SetlXgrammar.g" target="_blank">Antlr 3 Grammatik</a> erzeugt. <a href="http://www.antlr.org" target="_blank">Antlr 4</a> zusammen mit dem <a href="">Javascript Target</a> zu verwenden ist also naheliegend, da so die SetlX Grammatik f&#xFC;r den Java Interpreter vermeindlich &#xFC;bernommen werden kann.</p>
 <p>In einem Versuch die Antlr 3 Grammatik in eine Antlr 4 Grammatik umzuwandeln stellte sich schnell auf Grund der Unterschiede zwischen den Versionen als aufw&#xE4;ndig heraus. Desweiteren erreichte der generierte Parser sehr schnell das Speicherlimit der Node.js Virtual Machine. Eine Umsetzung mit Antlr 4 wurde aus diesen Gr&#xFC;nden nicht weiter verfolgt.</p>
 <p><strong>JISON</strong></p>
 <p>JISON ist einer der bekanntesten Parsergeneratoren und wird auch von anderen Transpilern verwendet. JISON unterst&#xFC;tzt im Gegensatz zu Antlr und PEG.js nur kontextfreie Grammatiken. Da die SetlX Grammatik jedoch als kontextsensitive Grammatik formuliert ist, m&#xFC;sste die Grammatik mit gro&#xDF;em Aufwand umformuliert werden.</p>
 <p><strong>PEG.js</strong></p>
 <p>PEG.js ist ein Parsergenerator f&#xFC;r kontextsensitive Grammatiken in JavaScript. Der Name impliziert bereits, dass PEG &#xE4;hnlich wie Antlr f&#xFC;r <em>Parsing Expression Grammar</em> entwickelt wurde. Das hat den Vorteil, dass auch hier die SetlX Grammatik bis auf einige Syntax&#xE4;nderungen in ihrer Struktur erhalten bleiben kann. Lediglich die Aktionen m&#xFC;ssen an Javascript angepasst werden.</p>
-<p>PEG.js ist in JavaScript geschrieben und integriert sich im Gegensatz zu Antlr problemlos in den Softwarestack. Mit Hilfe eines <a href="https://github.com/lazutkin/gulp-peg" _target="blank">Plugins</a> f&#xFC;r <a href="http://gulpjs.com/" _target="blank">Gulp</a> kann der Buildprozess automatisiert werden.</p>
+<p>PEG.js ist in JavaScript geschrieben und integriert sich im Gegensatz zu Antlr problemlos in den Softwarestack. Mit Hilfe eines <a href="https://github.com/lazutkin/gulp-peg" target="_blank">Plugins</a> f&#xFC;r <a href="http://gulpjs.com/" target="_blank">Gulp</a> kann der Buildprozess automatisiert werden.</p>
 <p>PEG.js stellt sich als m&#xE4;chtige L&#xF6;sung heraus, die sich in die verwendete Technologien ohne Probleme einf&#xFC;gen l&#xE4;sst. SetlX.js setzt deshalb auf PEG.js als Parsergenerator.</p>
 <h4 id="4112-syntaxbaumklassen">4.1.1.2 Syntaxbaumklassen</h4>
 <p>Das Ergebnis des Parsers muss f&#xFC;r die n&#xE4;chsten Schritte in einer Datenstruktur festgehalten werden. Daf&#xFC;r werden in der Regel Syntaxb&#xE4;ume verwendet. Um die Erstellung des Syntaxbaums einfacher zu gestalten werden Klassen angelegt, mit denen die Knoten im Baum einfach generiert werden k&#xF6;nnen. F&#xFC;r fast jeder Regel wird daf&#xFC;r eine Klasse erstellt. Eine Au&#xDF;nahme bilden die Listenregeln, etwa <em>ExpressionList</em>. Sie geben statt einer eigenen <em>ExpressionList</em>-Klasse einfach eine Liste bzw. einen JavaScript Array von <em>Expressions</em> zur&#xFC;ck. So k&#xF6;nnen neue Features durch die Erstellung von Parseregeln in der Grammatik und entsprechenden Klassen hinzugef&#xFC;gt werden, ohne mit bestehenden Bestandteilen in Konflikt zu geraten.</p>
@@ -356,7 +356,7 @@ Desweiteren sind Operatoren in SetlX noch viel st&#xE4;rker &#xFC;berladen, als 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"4 Design","level":"2.4","depth":1,"next":{"title":"5 Implementierung","level":"2.5","depth":1,"path":"implementation.md","ref":"implementation.md","articles":[]},"previous":{"title":"3 Anforderungen","level":"2.3","depth":1,"path":"requirements.md","ref":"requirements.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.x.x"},"file":{"path":"architecture.md","mtime":"2016-06-07T13:48:46.348Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-07-03T19:53:10.479Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"4 Design","level":"2.4","depth":1,"next":{"title":"5 Implementierung","level":"2.5","depth":1,"path":"implementation.md","ref":"implementation.md","articles":[]},"previous":{"title":"3 Anforderungen","level":"2.3","depth":1,"path":"requirements.md","ref":"requirements.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.x.x"},"file":{"path":"architecture.md","mtime":"2016-06-07T13:48:46.348Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-04T20:37:17.651Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -386,7 +386,7 @@ Desweiteren sind Operatoren in SetlX noch viel st&#xE4;rker &#xFC;berladen, als 
         
     
         
-        <script src="gitbook/gitbook-plugin-fontsettings/buttons.js"></script>
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
         
     
 

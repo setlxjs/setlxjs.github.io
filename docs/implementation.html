@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.0.3">
+        <meta name="generator" content="GitBook 3.1.1">
         
         
         
@@ -284,10 +284,10 @@
 <h2 id="51-setlx-transpiler">5.1 SetlX Transpiler</h2>
 <h3 id="511-werkzeuge">5.1.1 Werkzeuge</h3>
 <p>F&#xFC;r die Erstellung des Transpilers kommen unterschiedliche Tools aus dem Node.js &#xD6;kosystem zum Einsatz.</p>
-<p><a href="http://gulpjs.com/" _target="blank"><strong>Gulp</strong></a> ist ein sogenannter Taskrunner. Gulp wird verwendet um die unterschiedlichen Buildmethoden zu vereinen und Builds automatisch und nach Bedarf zu starten. Gulp verwendet Plugins um Babel und PEG.js anzusteuern. Gulp verwendet sogenannte Streams um Sourcedateien zu transformieren und im Zielverzeichnes abzulegen. Gulp kann au&#xDF;erdem das Dateisystem beobachten und &#xC4;nderungen dann in Echtzeit in neuen Builds zusammenstellen.</p>
-<p><a href="https://babeljs.io" _target="blank"><strong>Babel</strong></a> ist der bekannteste Transpiler f&#xFC;r zuk&#xFC;nftige JavaScriptversionen. Babel verwandelt so zum beispiel ES2015 Code in ES5 Code um. Auf diese Weise kann der Code auch auf Umgebungen  ausgef&#xFC;hrt werden, die die neuen Features der aktuellen EcmaScript Definition noch nicht unterst&#xFC;tzen. Zum Zeitpunkt des Projektes unterst&#xFC;tzen die wenigsten Umgebungen alle neuen Features.</p>
-<p><a href="http://pegjs.org/" _target="blank"><strong>PEG.js</strong></a> ist ein Parsergenerator f&#xFC;r kontextsensitive Grammtiken. Im Kapitel 3.1.1.1 wurde dieses Werkzeug bereits vorgestellt. Wichtig ist an dieser Stelle noch, dass PEG.js auf Node.js l&#xE4;uft und wie Babel mit Hilfe eines Gulp Plugins Builds in Echtzeit erzeugen kann.</p>
-<p><a href="https://mochajs.org/" _target="blank"><strong>Mocha</strong></a> ist ein Unit Test Framework. Mocha macht es m&#xF6;glich definierte Unit Tests auszuf&#xFC;hren und die Ergebnisse dann in der Konsole darzustellen. Mocha selbst hat keine Assertion Bibliothek, deshalb wird zus&#xE4;tzlich <a href="https://shouldjs.github.io/" _target="blank"><strong>Should.js</strong></a> verwendet. Mit Hilfe von <a href="http://sinonjs.org/" _target="blank"><strong>Sinon.js</strong></a> werden au&#xDF;erdem Funktionsaufrufe validiert.</p>
+<p><a href="http://gulpjs.com/" target="_blank"><strong>Gulp</strong></a> ist ein sogenannter Taskrunner. Gulp wird verwendet um die unterschiedlichen Buildmethoden zu vereinen und Builds automatisch und nach Bedarf zu starten. Gulp verwendet Plugins um Babel und PEG.js anzusteuern. Gulp verwendet sogenannte Streams um Sourcedateien zu transformieren und im Zielverzeichnes abzulegen. Gulp kann au&#xDF;erdem das Dateisystem beobachten und &#xC4;nderungen dann in Echtzeit in neuen Builds zusammenstellen.</p>
+<p><a href="https://babeljs.io" target="_blank"><strong>Babel</strong></a> ist der bekannteste Transpiler f&#xFC;r zuk&#xFC;nftige JavaScriptversionen. Babel verwandelt so zum beispiel ES2015 Code in ES5 Code um. Auf diese Weise kann der Code auch auf Umgebungen  ausgef&#xFC;hrt werden, die die neuen Features der aktuellen EcmaScript Definition noch nicht unterst&#xFC;tzen. Zum Zeitpunkt des Projektes unterst&#xFC;tzen die wenigsten Umgebungen alle neuen Features.</p>
+<p><a href="http://pegjs.org/" target="_blank"><strong>PEG.js</strong></a> ist ein Parsergenerator f&#xFC;r kontextsensitive Grammtiken. Im Kapitel 3.1.1.1 wurde dieses Werkzeug bereits vorgestellt. Wichtig ist an dieser Stelle noch, dass PEG.js auf Node.js l&#xE4;uft und wie Babel mit Hilfe eines Gulp Plugins Builds in Echtzeit erzeugen kann.</p>
+<p><a href="https://mochajs.org/" target="_blank"><strong>Mocha</strong></a> ist ein Unit Test Framework. Mocha macht es m&#xF6;glich definierte Unit Tests auszuf&#xFC;hren und die Ergebnisse dann in der Konsole darzustellen. Mocha selbst hat keine Assertion Bibliothek, deshalb wird zus&#xE4;tzlich <a href="https://shouldjs.github.io/" target="_blank"><strong>Should.js</strong></a> verwendet. Mit Hilfe von <a href="http://sinonjs.org/" target="_blank"><strong>Sinon.js</strong></a> werden au&#xDF;erdem Funktionsaufrufe validiert.</p>
 <h3 id="512-grammatik">5.1.2 Grammatik</h3>
 <p>Die SetlX.js Grammatik bedient sich der Struktur der originalen SetlX Grammatik. Jede Regel, die zu einem unterst&#xFC;tztem Bestandteil von SetlX.js geh&#xF6;rt, wurde von Antlr zu PEG.js &#xFC;bersetzt. In der sogenannten <em>Action</em> der wird der abstrakte Syntaxbaum erstellt.</p>
 <pre><code class="lang-js"><span class="hljs-comment">// Beispiel einer Regel</span>
@@ -451,7 +451,7 @@ util/
 }
 </code></pre>
 <h2 id="53-setlxjs-cli">5.3 SetlX.js CLI</h2>
-<p>Das SetlX.js Command Line Interface wurde speziell f&#xFC;r Node.js entwickelt und ist in ES5 geschrieben. Es l&#xE4;uft so nativ auf V8, der Virtuellen Maschiene in Node.js. SetlX.js bildet einen schmalen Wrapper um den Transpiler und stellt Funktionen und Optionen &#xFC;ber Flags bereit. SetlX.js CLI verwendet die JavaScript Library <a href="https://github.com/tj/commander.js" _target="blank">Commander.js</a> um die &#xDC;bergabeparameter zu parsen.</p>
+<p>Das SetlX.js Command Line Interface wurde speziell f&#xFC;r Node.js entwickelt und ist in ES5 geschrieben. Es l&#xE4;uft so nativ auf V8, der Virtuellen Maschiene in Node.js. SetlX.js bildet einen schmalen Wrapper um den Transpiler und stellt Funktionen und Optionen &#xFC;ber Flags bereit. SetlX.js CLI verwendet die JavaScript Library <a href="https://github.com/tj/commander.js" target="_blank">Commander.js</a> um die &#xDC;bergabeparameter zu parsen.</p>
 <p>Zum Transpilieren wird der SetlX.js Transpiler aufgerufen. Dateisystemoperationen werden mit den standardm&#xE4;&#xDF;igen Node.js Paketen <code>path</code> und <code>fs</code> umgesetzt. F&#xFC;r das Ausf&#xFC;hren des Ergebniscodes wird ein einfacher <code>eval</code> Aufruf verwendet.</p>
 
                                 
@@ -496,7 +496,7 @@ util/
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"5 Implementierung","level":"2.5","depth":1,"next":{"title":"6 Dokumentation","level":"2.6","depth":1,"path":"documentation.md","ref":"documentation.md","articles":[]},"previous":{"title":"4 Design","level":"2.4","depth":1,"path":"architecture.md","ref":"architecture.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.x.x"},"file":{"path":"implementation.md","mtime":"2016-06-07T13:36:52.289Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-07-03T19:53:10.479Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"5 Implementierung","level":"2.5","depth":1,"next":{"title":"6 Dokumentation","level":"2.6","depth":1,"path":"documentation.md","ref":"documentation.md","articles":[]},"previous":{"title":"4 Design","level":"2.4","depth":1,"path":"architecture.md","ref":"architecture.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.x.x"},"file":{"path":"implementation.md","mtime":"2016-06-07T13:36:52.289Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-04T20:37:17.651Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -526,7 +526,7 @@ util/
         
     
         
-        <script src="gitbook/gitbook-plugin-fontsettings/buttons.js"></script>
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
         
     
 
