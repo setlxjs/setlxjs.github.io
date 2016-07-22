@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>SetlX.js Browser Playground</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.css"
+    />
+    <link
+      rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/theme/monokai.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.js" >
+    </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/mode/simple.min.js"
+    >
+    </script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+      }
+
+      #editor {
+        width: 50%;
+        margin: 0;
+        float: left;
+        height: 100%;
+      }
+
+      #cons {
+        width: 50%;
+        margin: 0;
+        float: right;
+        height: 100%;
+        background-color: #272822;
+        color: #f8f8f2;
+        padding: 10px;
+        font-family: monospace;
+        border-left: 2px solid #f8f8f2;
+      }
+
+      .error-line {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div id="editor"></div>
+      <div id="cons"></div>
+    </div>
+  <script type="text/javascript" src="bundle.js"></script></body>
+</html>
