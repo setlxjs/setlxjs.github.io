@@ -2360,7 +2360,6 @@
 
 	function transpiler(fileContent, plugins) {
 	  var syntaxTree = (0, _parse2['default'])(fileContent);
-	  console.log(plugins);
 	  return (0, _createTranspiler2['default'])(plugins)(syntaxTree);
 	}
 
@@ -2624,10 +2623,11 @@
 
 	var _constantsTokens = __webpack_require__(6);
 
-	function assignment(_ref, transpile) {
+	function assignment(_ref, transpile, plugins) {
 	  var receiver = _ref.receiver;
 	  var expression = _ref.expression;
 
+	  // assigning to lists in immutable.js
 	  if (receiver.token === _constantsTokens.CALL) {
 	    var realReceiver = transpile(receiver.receiver);
 	    var accessor = transpile(receiver.call.accessor);
@@ -2635,7 +2635,15 @@
 	    return realReceiver + ' = ' + realReceiver + '.set(' + accessor + ', ' + transpile(expression) + ')';
 	  }
 	  if (receiver.token === _constantsTokens.ASSIGNABLE_LIST) {
+	    receiver.assignables.forEach(function (assignable) {
+	      if (!plugins.stdLibPlugin.isStd(assignable.name)) {
+	        plugins.scopePlugin.register(assignable.name);
+	      }
+	    });
 	    return transpile(receiver) + ' = ' + transpile(expression) + '.toArray()';
+	  }
+	  if (!plugins.stdLibPlugin.isStd(receiver.name)) {
+	    plugins.scopePlugin.register(receiver.name);
 	  }
 	  return transpile(receiver) + ' = ' + transpile(expression);
 	}
@@ -2672,12 +2680,9 @@
 
 	function identifier(_ref, transpile, _ref2) {
 	  var name = _ref.name;
-	  var scopePlugin = _ref2.scopePlugin;
 	  var stdLibPlugin = _ref2.stdLibPlugin;
 
-	  if (!stdLibPlugin.isStd(name)) {
-	    scopePlugin.register(name);
-	  }
+	  stdLibPlugin.isStd(name);
 	  return name;
 	}
 
