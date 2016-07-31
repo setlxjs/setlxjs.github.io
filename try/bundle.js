@@ -63,17 +63,16 @@
 
 	var button = document.createElement('button');
 	button.innerHTML = 'RUN!';
-	button.style.position = 'fixed';
-	button.style.top = '10px';
-	button.style.right = '10px';
 
 	document.body.appendChild(editor);
 	document.body.appendChild(button);
 	document.body.appendChild(cons);
 
+	document.getElementById('menu').innerHTML += '<div>' + ("setlxjs-lib v1.2.1 + setlxjs-transpiler v1.4.0") + '</div>';
+
 	var codemirror = CodeMirror(editor, {
 	  theme: 'monokai',
-	  value: 'print("hello world");',
+	  value: '// write your programm here and hit the run button above\nprint("hello world");',
 	  lineNumbers: true,
 	  mode: 'setlx'
 	});
@@ -85,13 +84,24 @@
 	button.onclick = function () {
 	  cons.innerHTML = '';
 	  (0, _execute2.default)(codemirror.getValue(), print).catch(function (error) {
+	    if (error.line) {
+	      codemirror.addLineClass(error.line - 1, 'background', 'error-line');
+	      codemirror.on('change', function me() {
+	        codemirror.removeLineClass(error.line - 1, 'background', 'error-line');
+	        codemirror.off('change', me);
+	      });
+	    } else {
+	      if (error.toString().match(/SyntaxError/)) {
+	        print('An Error occured. This might be due to an error in the transpiler or your');
+	        print('browser is not compatible with the new ES2015 Syntax. Please use newest versions');
+	        print('of Google Chrome or Firefox!');
+	        print('');
+	      } else {
+	        print('You have an Error in your SetlX code:');
+	        print('');
+	      }
+	    }
 	    print(error);
-
-	    codemirror.addLineClass(error.line - 1, 'background', 'error-line');
-	    var evt = codemirror.on('change', function me() {
-	      codemirror.removeLineClass(error.line - 1, 'background', 'error-line');
-	      codemirror.off('change', me);
-	    });
 	  });
 	};
 
@@ -2797,29 +2807,67 @@
 	});
 	exports['default'] = generator;
 
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { 'default': obj };
+	}
+
 	var _constantsTokens = __webpack_require__(6);
+
+	var _utilIndent = __webpack_require__(10);
+
+	var _utilIndent2 = _interopRequireDefault(_utilIndent);
+
+	/**
+	 * This function creates Lambda functions for generators.
+	 * This has many cases:
+	 * - Standard single parameter generator: expr: x in a -> x => expr
+	 * - Standard multi parameter generator: expr: x in a, y in b -> (x, y) => expr
+	 * - Destructuring single parameter generator: expr: [x, y] in a -> ($temp) => {
+	 *     var [x, y] = $temp.toArray();
+	 *     return expr;
+	 *   }
+	 * - Destructuring multi parameter assignment
+	 */
+	function createLambdaMaker(tree, transpile, scopePlugin) {
+	  scopePlugin.newScope();
+	  var temps = [];
+	  var itParamsList = tree.iterators.map(function (it) {
+	    // if it is AssignableList assign temp variable and create assignment for function body
+	    if (it.assignable.token === _constantsTokens.ASSIGNABLE_LIST) {
+	      var tempVar = scopePlugin.getTempVar();
+	      temps.push('var ' + transpile(it.assignable) + ' = ' + tempVar + '.toArray();');
+	      return tempVar;
+	    }
+	    return transpile(it.assignable);
+	  });
+	  scopePlugin.closeScope();
+	  return function (expr) {
+	    var body = undefined;
+	    if (temps.length > 0) {
+	      body = '{\n' + (0, _utilIndent2['default'])(2, temps.join('\n') + ('\nreturn ' + transpile(expr) + ';')) + '\n}';
+	    } else {
+	      body = transpile(expr);
+	    }
+	    if (itParamsList.length === 1 && tree.iterators[0].assignable.token === _constantsTokens.IDENTIFIER) {
+	      return itParamsList[0] + ' => ' + body;
+	    }
+	    return '(' + itParamsList.join(', ') + ') => ' + body;
+	  };
+	}
 
 	function generator(tree, transpile, _ref) {
 	  var helperPlugin = _ref.helperPlugin;
+	  var scopePlugin = _ref.scopePlugin;
 
-	  var itParams = undefined;
-	  var itParamsList = tree.iterators.map(function (it) {
-	    return transpile(it.assignable);
-	  });
-	  // if only one arg create "x =>", else "(x, y) =>"
-	  if (itParamsList.length === 1 && tree.iterators[0].assignable.token === _constantsTokens.IDENTIFIER) {
-	    itParams = itParamsList[0];
-	  } else {
-	    itParams = '(' + itParamsList.join(', ') + ')';
-	  }
+	  var lambdaMaker = createLambdaMaker(tree, transpile, scopePlugin);
 	  var itExpr = tree.iterators.map(function (it) {
 	    return transpile(it.expression);
 	  }).join(', ');
 
-	  var mapper = '.map(' + itParams + ' => ' + transpile(tree.mapper) + ')';
+	  var mapper = '.map(' + lambdaMaker(tree.mapper) + ')';
 	  var gen = helperPlugin.request('gen') + '(' + itExpr + ')';
 	  if (tree.expression) {
-	    return gen + ('.filter(' + itParams + ' => ' + transpile(tree.expression) + ')') + mapper;
+	    return gen + ('.filter(' + lambdaMaker(tree.expression) + ')') + mapper;
 	  }
 	  return gen + mapper;
 	}
@@ -3325,20 +3373,33 @@
 
 	var _utilIndent2 = _interopRequireDefault(_utilIndent);
 
+	var _constantsTokens = __webpack_require__(6);
+
 	function forLoop(tree, transpile, _ref) {
 	  var helperPlugin = _ref.helperPlugin;
 	  var scopePlugin = _ref.scopePlugin;
 
-	  var temp1 = scopePlugin.getTempVar();
-	  var temp2 = scopePlugin.getTempVar();
 	  var expr = '';
 
 	  if (tree.expression) {
 	    expr = 'if (!' + transpile(tree.expression) + ') continue;\n';
 	  }
+	  if (tree.iterators.length === 1) {
+	    // let's skip all this combinations stuff and just return a "for of" loop
+	    // either with a destructuring assignment: for ([a, b] in pairs)
+	    if (tree.iterators[0].assignable.token === _constantsTokens.ASSIGNABLE_LIST) {
+	      var temp = scopePlugin.getTempVar();
+	      var destructure = transpile(tree.iterators[0].assignable) + ' = ' + temp + '.toArray();\n';
+	      return 'for(' + temp + ' of ' + transpile(tree.iterators[0].expression) + ') {\n' + (0, _utilIndent2['default'])(2, destructure + expr + transpile(tree.block)) + '}';
+	    }
+	    // or simple assignment: for (a in x)
+	    return 'for(' + transpile(tree.iterators[0].assignable) + ' of ' + (transpile(tree.iterators[0].expression) + ') {\n') + (0, _utilIndent2['default'])(2, expr + transpile(tree.block)) + '}';
+	  }
+	  var temp1 = scopePlugin.getTempVar();
+	  var temp2 = scopePlugin.getTempVar();
 
 	  var assignments = tree.iterators.map(function (it, index) {
-	    return transpile(it.assignable) + ' = ' + temp1 + '[' + temp2 + '][' + index + '];';
+	    return transpile(it.assignable) + ' = ' + temp1 + '[' + temp2 + '][' + index + ']' + (it.assignable.token === _constantsTokens.ASSIGNABLE_LIST ? '.toArray()' : '') + ';';
 	  }).join('\n') + '\n';
 
 	  var cFn = helperPlugin.request('combinations');
@@ -3591,6 +3652,8 @@
 
 	var stdlib = ['print', 'load', 'abs', 'cos', 'arb', 'isBoolean', 'isString', 'isPrucedure', 'isList', 'isSet', 'isInteger', 'isDouble'];
 
+	exports.stdlib = stdlib;
+
 	var StdLibPlugin = function (_ImportPlugin) {
 	  _inherits(StdLibPlugin, _ImportPlugin);
 
@@ -3615,7 +3678,6 @@
 	}(_ImportPlugin3['default']);
 
 	exports['default'] = StdLibPlugin;
-	module.exports = exports['default'];
 
 /***/ },
 /* 76 */
@@ -3896,6 +3958,11 @@
 	    return '[' + value.map(stringify).join(', ') + ']';
 	  }
 	  if (type === _typify.SET) {
+	    if (value.every(function (val) {
+	      return (0, _typify2.default)(val) === _typify.NUMBER;
+	    })) {
+	      return '{' + value.sort().map(stringify).join(', ') + '}';
+	    }
 	    return '{' + value.map(stringify).join(', ') + '}';
 	  }
 	  if (type === _typify.STRING && quotationMarks) {
@@ -4535,10 +4602,10 @@
 	}
 
 	var Wrapper = function () {
-	  function Wrapper(range) {
+	  function Wrapper(r) {
 	    _classCallCheck(this, Wrapper);
 
-	    this.range = range;
+	    this.range = r;
 	  }
 
 	  _createClass(Wrapper, [{
@@ -5257,26 +5324,26 @@
 
 /***/ },
 /* 111 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
-	/* Example definition of a simple mode that understands a subset of
-	 * JavaScript:
-	 */
+	var _StdLibPlugin = __webpack_require__(75);
+
+	var std = RegExp('(?:' + _StdLibPlugin.stdlib.join('|') + '|procedure)\\b');
 
 	CodeMirror.defineSimpleMode('setlx', {
 	  // The start state contains the rules that are intially used
-	  start: [{ regex: /"(?:[^\\]|\\.)*?"/, token: "string" }, { regex: /(procedure)(\s+)([a-z$][\w$]*)/, token: ["keyword", null, "variable-2"] },
+	  start: [{ regex: /"(?:[^\\]|\\.)*?"/, token: "string" },
 	  // Rules are matched in the order in which they appear, so there is
 	  // no ambiguity between this one and the one above
-	  { regex: /(?:function|var|return|if|for|while|else|do|this|forall|exists)\b/,
-	    token: "keyword" }, { regex: /true|false|om/, token: "atom" }, { regex: /0x[a-f\d]+|[-+]?(?:\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/i,
-	    token: "number" }, { regex: /\/\/.*/, token: "comment" }, { regex: /\/(?:[^\\]|\\.)*?\//, token: "variable-3" },
+	  { regex: /(?:return|if|for|while|else|forall|exists)\b/,
+	    token: "keyword" }, { regex: /true|false|om|omega/, token: "atom" }, { regex: std, token: "builtin" }, { regex: /0x[a-f\d]+|[-+]?(?:\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/i,
+	    token: "number" }, { regex: /\/\/.*/, token: "comment" },
 	  // A next property will cause the mode to move to a different state
-	  { regex: /\/\*/, token: "comment", next: "comment" }, { regex: /[-+\/*=<>!]+|in/, token: "operator" },
+	  { regex: /\/\*/, token: "comment", next: "comment" }, { regex: /in|:=|[-+\/*=<>!]+/, token: "operator" },
 	  // indent and dedent properties guide autoindentation
-	  { regex: /[\{\[\(]/, indent: true }, { regex: /[\}\]\)]/, dedent: true }, { regex: /[a-z$][\w$]*/, token: "variable" }],
+	  { regex: /[\{\[\(]/, indent: true }, { regex: /[\}\]\)]/, dedent: true }, { regex: /[a-z][a-zA-Z1-9]*/, token: "variable" }],
 	  // The multi-line comment state.
 	  comment: [{ regex: /.*?\*\//, token: "comment", next: "start" }, { regex: /.*/, token: "comment" }],
 	  // The meta property contains global information about the mode. It
