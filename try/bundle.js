@@ -68,7 +68,7 @@
 	document.body.appendChild(button);
 	document.body.appendChild(cons);
 
-	document.getElementById('menu').innerHTML += '<div>' + ("setlxjs-lib v1.2.1 + setlxjs-transpiler v1.4.0") + '</div>';
+	document.getElementById('menu').innerHTML += '<div>' + ("setlxjs-lib v1.2.2 + setlxjs-transpiler v1.4.0") + '</div>';
 
 	var codemirror = CodeMirror(editor, {
 	  theme: 'monokai',
@@ -3965,7 +3965,7 @@
 	    }
 	    return '{' + value.map(stringify).join(', ') + '}';
 	  }
-	  if (type === _typify.STRING && quotationMarks) {
+	  if (type === _typify.STRING && quotationMarks !== false) {
 	    return '"' + value + '"';
 	  }
 	  if (type === _typify.OM) {
@@ -5211,7 +5211,7 @@
 	  function StdLibPluginBrowser() {
 	    _classCallCheck(this, StdLibPluginBrowser);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(StdLibPluginBrowser).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (StdLibPluginBrowser.__proto__ || Object.getPrototypeOf(StdLibPluginBrowser)).apply(this, arguments));
 	  }
 
 	  _createClass(StdLibPluginBrowser, [{
@@ -5260,7 +5260,7 @@
 	  function HelperPluginBrowser() {
 	    _classCallCheck(this, HelperPluginBrowser);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(HelperPluginBrowser).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (HelperPluginBrowser.__proto__ || Object.getPrototypeOf(HelperPluginBrowser)).apply(this, arguments));
 	  }
 
 	  _createClass(HelperPluginBrowser, [{
